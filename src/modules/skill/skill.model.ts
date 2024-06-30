@@ -17,9 +17,6 @@ const skillSchema = new Schema<ISkill>(
   },
   {
     timestamps: true,
-    toJSON: {
-      virtuals: true,
-    },
   }
 );
 

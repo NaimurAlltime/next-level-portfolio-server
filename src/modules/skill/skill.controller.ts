@@ -5,10 +5,11 @@ import AppError from "../../utils/customError.util";
 import sendResponse from "../../utils/sendResponse.util";
 import locationService from "./skill.service";
 import { ISkill } from "./skill.interface";
+import skillService from "./skill.service";
 
 const createSkill: RequestHandler = catchAsyncErrors(
   async (req: Request, res: Response) => {
-    const result = await locationService.create(req.body);
+    const result = await skillService.createSkill(req.body);
     sendResponse<ISkill>(res, {
       statusCode: httpStatus.OK,
       success: true,
@@ -20,7 +21,7 @@ const createSkill: RequestHandler = catchAsyncErrors(
 
 const getSkill: RequestHandler = catchAsyncErrors(
   async (req: Request, res: Response) => {
-    const getResult = await locationService.getLocations(req.queryFeatures);
+    const getResult = await skillService.getSkill(req.queryFeatures);
     sendResponse<Partial<ISkill>[]>(res, {
       statusCode: httpStatus.OK,
       success: true,
@@ -39,7 +40,7 @@ const updateSkill: RequestHandler = catchAsyncErrors(
     const id: string = req.params.id;
     const updatePayload: Partial<ISkill> = req.body;
 
-    const result: Partial<ISkill> | null = await locationService.updateLocation(
+    const result: Partial<ISkill> | null = await skillService.updateSkill(
       id,
       updatePayload
     );
@@ -59,7 +60,7 @@ const deleteSkill: RequestHandler = catchAsyncErrors(
   async (req: Request, res: Response) => {
     const id: string = req.params.id;
 
-    const result = await locationService.deleteLocation(id);
+    const result = await skillService.deleteSkill(id);
 
     if (!result) {
       throw new AppError("Requrested Document Not Found", httpStatus.NOT_FOUND);
@@ -72,10 +73,10 @@ const deleteSkill: RequestHandler = catchAsyncErrors(
   }
 );
 
-const locationController = {
+const skillController = {
   createSkill,
   getSkill,
   updateSkill,
   deleteSkill,
 };
-export default locationController;
+export default skillController;

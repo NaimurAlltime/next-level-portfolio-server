@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
   sendResponse(res, {
     statusCode: 200,
     success: true,
-    message: "Welcome to car rent",
+    message: "Welcome to Next Level Portfolio Server",
   });
 });
 

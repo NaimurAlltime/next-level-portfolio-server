@@ -2,42 +2,31 @@ import express, { Router } from "express";
 import authorization from "../../middleware/authorization.middleware";
 import queryFeatures from "../../middleware/queryFeatures.middleware";
 import validateRequest from "../../middleware/validateRequest.middleware";
-import locationController from "./skill.controller";
-import locationValidation from "./skill.validation";
-import skillService from "./skill.service";
+import skillController from "./skill.controller";
+import skillValidation from "./skill.validation";
 
-const locationRoutes: Router = express.Router();
+const skillRoutes: Router = express.Router();
 
-locationRoutes.post(
+skillRoutes.post(
   "/create",
-  validateRequest(locationValidation.createReq),
+  validateRequest(skillValidation.createReq),
   // authorization(),
-  skillService.createSkill
+  skillController.createSkill
 );
 
-locationRoutes.get(
-  "/",
-  queryFeatures("multiple"),
-  locationController.getLocations
-);
+skillRoutes.get("/", queryFeatures("multiple"), skillController.getSkill);
 
-locationRoutes.get(
-  "/:id",
-  queryFeatures("single"),
-  locationController.getSigleLocation
-);
-
-locationRoutes.patch(
+skillRoutes.patch(
   "/update/:id",
-  validateRequest(locationValidation.updateReq),
+  validateRequest(skillValidation.updateReq),
   // authorization(),
-  locationController.updateLocation
+  skillController.updateSkill
 );
 
-locationRoutes.delete(
+skillRoutes.delete(
   "/delete/:id",
   // authorization(),
-  locationController.deleteLocation
+  skillController.deleteSkill
 );
 
-export default locationRoutes;
+export default skillRoutes;

@@ -4,14 +4,15 @@ const createReq = z.object({
   body: z
     .object({
       name: z.string({
-        required_error: "Title is must required",
-        invalid_type_error: "Title must be a string",
+        required_error: "name is must required",
+        invalid_type_error: "name must be a string",
       }),
-      mapIframe: z
-        .string({
-          invalid_type_error: "MapIframe must be a string",
-        })
-        .optional(),
+      percentage: z.string({
+        invalid_type_error: "Percentage must be a string",
+      }),
+      icon: z.string({
+        invalid_type_error: "Icon must be a string",
+      }),
     })
     .strict(),
 });
@@ -19,20 +20,25 @@ const updateReq = z.object({
   body: z.object({
     name: z
       .string({
-        invalid_type_error: "Title must be a string",
+        invalid_type_error: "name must be a string",
       })
       .optional(),
-    mapIframe: z
+    percentage: z
       .string({
-        invalid_type_error: "MapIframe must be a string",
+        invalid_type_error: "percentage must be a string",
+      })
+      .optional(),
+    icon: z
+      .string({
+        invalid_type_error: "icon must be a string",
       })
       .optional(),
   }),
 });
 
-const locationValidation = {
+const skillValidation = {
   createReq,
   updateReq,
 };
 
-export default locationValidation;
+export default skillValidation;

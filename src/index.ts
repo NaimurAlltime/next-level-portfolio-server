@@ -30,6 +30,7 @@ const runServer = async (): Promise<void> => {
   // handle unHandledRejection
   process.on("unhandledRejection", (err) => {
     console.error("UNHANDLED REJECTION... 💥. Process Terminated");
+    console.log(err);
     if (server) {
       server.close(() => {
         process.exit(1);
