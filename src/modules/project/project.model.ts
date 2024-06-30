@@ -1,12 +1,6 @@
 import { Schema, model } from "mongoose";
 import { IProject } from "./project.interface";
 
-interface ITechnology {
-  _id: string;
-  name: string;
-  image: string;
-}
-
 const techSchema = new Schema(
   {
     name: { type: String, required: true },
@@ -24,7 +18,6 @@ const schema = new Schema(
     technologies: [{ type: techSchema }],
     cover: { type: String, required: true },
     repositoryLink: {
-      source_code: { type: String },
       client_side_code: { type: String },
       server_side_code: { type: String },
     },
