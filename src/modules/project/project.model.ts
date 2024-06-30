@@ -1,25 +1,10 @@
 import { Schema, model } from "mongoose";
+import { IProject } from "./project.interface";
 
 interface ITechnology {
   _id: string;
   name: string;
   image: string;
-}
-
-export interface IProject {
-  name: string;
-  description: string;
-  category?: "Frontend" | "Backend" | "Full-stack";
-  featured: boolean;
-  features: string[];
-  technologies: ITechnology[];
-  cover: string;
-  repositoryLink: {
-    source_code: string;
-    client_side_code: string;
-    server_side_code: string;
-  };
-  liveSiteLink: string;
 }
 
 const techSchema = new Schema(
