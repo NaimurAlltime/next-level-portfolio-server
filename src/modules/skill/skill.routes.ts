@@ -4,6 +4,7 @@ import queryFeatures from "../../middleware/queryFeatures.middleware";
 import validateRequest from "../../middleware/validateRequest.middleware";
 import locationController from "./skill.controller";
 import locationValidation from "./skill.validation";
+import skillService from "./skill.service";
 
 const locationRoutes: Router = express.Router();
 
@@ -11,7 +12,7 @@ locationRoutes.post(
   "/create",
   validateRequest(locationValidation.createReq),
   // authorization(),
-  locationController.createLocation
+  skillService.createSkill
 );
 
 locationRoutes.get(

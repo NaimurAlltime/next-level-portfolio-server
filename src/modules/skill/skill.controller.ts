@@ -4,24 +4,24 @@ import catchAsyncErrors from "../../utils/catchAsyncError.util";
 import AppError from "../../utils/customError.util";
 import sendResponse from "../../utils/sendResponse.util";
 import locationService from "./skill.service";
-import { ILocation } from "./skill.interface";
+import { ISkill } from "./skill.interface";
 
-const createLocation: RequestHandler = catchAsyncErrors(
+const createSkill: RequestHandler = catchAsyncErrors(
   async (req: Request, res: Response) => {
     const result = await locationService.create(req.body);
-    sendResponse<ILocation>(res, {
+    sendResponse<ISkill>(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: "Location created successfully",
+      message: "Skill created successfully",
       data: result,
     });
   }
 );
 
-const getLocations: RequestHandler = catchAsyncErrors(
+const getSkill: RequestHandler = catchAsyncErrors(
   async (req: Request, res: Response) => {
     const getResult = await locationService.getLocations(req.queryFeatures);
-    sendResponse<Partial<ILocation>[]>(res, {
+    sendResponse<Partial<ISkill>[]>(res, {
       statusCode: httpStatus.OK,
       success: true,
       data: getResult.data,
@@ -33,34 +33,21 @@ const getLocations: RequestHandler = catchAsyncErrors(
     });
   }
 );
-const getSigleLocation: RequestHandler = catchAsyncErrors(
+
+const updateSkill: RequestHandler = catchAsyncErrors(
   async (req: Request, res: Response) => {
     const id: string = req.params.id;
-    const result: Partial<ILocation> | null =
-      await locationService.getSingleLocation(id, req.queryFeatures);
-    if (!result) {
-      throw new AppError("Location Not Found", httpStatus.NOT_FOUND);
-    }
-    sendResponse<Partial<ILocation>>(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      data: result,
-    });
-  }
-);
+    const updatePayload: Partial<ISkill> = req.body;
 
-const updateLocation: RequestHandler = catchAsyncErrors(
-  async (req: Request, res: Response) => {
-    const id: string = req.params.id;
-    const updatePayload: Partial<ILocation> = req.body;
-
-    const result: Partial<ILocation> | null =
-      await locationService.updateLocation(id, updatePayload);
+    const result: Partial<ISkill> | null = await locationService.updateLocation(
+      id,
+      updatePayload
+    );
 
     if (!result) {
       throw new AppError("Requested Document Not Found", httpStatus.NOT_FOUND);
     }
-    sendResponse<Partial<ILocation>>(res, {
+    sendResponse<Partial<ISkill>>(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: "Document Updated Successfully",
@@ -68,7 +55,7 @@ const updateLocation: RequestHandler = catchAsyncErrors(
     });
   }
 );
-const deleteLocation: RequestHandler = catchAsyncErrors(
+const deleteSkill: RequestHandler = catchAsyncErrors(
   async (req: Request, res: Response) => {
     const id: string = req.params.id;
 
@@ -77,7 +64,7 @@ const deleteLocation: RequestHandler = catchAsyncErrors(
     if (!result) {
       throw new AppError("Requrested Document Not Found", httpStatus.NOT_FOUND);
     }
-    sendResponse<Partial<ILocation>>(res, {
+    sendResponse<Partial<ISkill>>(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: "Document Deleted Successfully",
@@ -86,10 +73,9 @@ const deleteLocation: RequestHandler = catchAsyncErrors(
 );
 
 const locationController = {
-  createLocation,
-  getLocations,
-  getSigleLocation,
-  updateLocation,
-  deleteLocation,
+  createSkill,
+  getSkill,
+  updateSkill,
+  deleteSkill,
 };
 export default locationController;

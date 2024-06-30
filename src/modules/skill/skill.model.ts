@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import { ISkill } from "./skill.interface";
 
-const locationSchema = new Schema<ISkill>(
+const skillSchema = new Schema<ISkill>(
   {
     name: {
       type: String,
@@ -24,4 +24,4 @@ const locationSchema = new Schema<ISkill>(
 );
 
 // modal should define at last
-export const Location = model<ILocation>("location", locationSchema);
+export const Skill = model<ISkill>("skill", skillSchema);
