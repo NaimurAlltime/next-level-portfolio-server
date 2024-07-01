@@ -5,8 +5,5 @@ export type ILoginUser = {
 
 export type ILoginUserResponse = {
   accessToken: string;
-  user: {
-    id: string;
-    email: string;
-  };
+  email: string;
 };

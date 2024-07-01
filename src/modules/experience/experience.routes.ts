@@ -1,4 +1,4 @@
-import validateRequest from "../../middleware/validateRequest.middleware";
+import validateRequest from "../../middleware/validateRequest";
 import experienceController from "./experience.controller";
 import { experienceValidator } from "./experience.validation";
 import express, { Router } from "express";

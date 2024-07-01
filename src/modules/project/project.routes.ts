@@ -1,8 +1,8 @@
 import express, { Router } from "express";
 import projectController from "./project.controller";
-import validateRequest from "../../middleware/validateRequest.middleware";
-import { experienceValidator } from "../experience/experience.validation";
+
 import { createProjectSchema, updateProjectSchema } from "./project.validation";
+import validateRequest from "../../middleware/validateRequest";
 
 const projectRoutes: Router = express.Router();
 

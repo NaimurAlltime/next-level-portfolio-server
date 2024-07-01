@@ -1,9 +1,7 @@
 import express, { Router } from "express";
-import authorization from "../../middleware/authorization.middleware";
-import queryFeatures from "../../middleware/queryFeatures.middleware";
-import validateRequest from "../../middleware/validateRequest.middleware";
 import skillController from "./skill.controller";
 import skillValidation from "./skill.validation";
+import validateRequest from "../../middleware/validateRequest";
 
 const skillRoutes: Router = express.Router();
 
@@ -14,7 +12,7 @@ skillRoutes.post(
   skillController.createSkill
 );
 
-skillRoutes.get("/", queryFeatures("multiple"), skillController.getSkill);
+skillRoutes.get("/", skillController.getSkill);
 
 skillRoutes.patch(
   "/update/:id",

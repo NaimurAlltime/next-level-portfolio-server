@@ -5,15 +5,22 @@ import helmet from "helmet";
 import hpp from "hpp";
 import morgan from "morgan";
 import config from "./config";
-import globalErrorHandler from "./middleware/globalErrorHandler.middleware";
 import routes from "./routes";
 import sendResponse from "./utils/sendResponse.util";
 import cookieParser from "cookie-parser";
+import globalErrorHandler from "./middleware/globalErrorHandler";
 const app: Application = express();
+
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
 
 //global app middleware
 app.use(helmet());
-app.use(cors());
+// app.use(cors({ origin: "*" }));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

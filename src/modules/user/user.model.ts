@@ -25,7 +25,7 @@ export const userSchema = new Schema<IUser, UserModel>(
 userSchema.statics.isUserExist = async function (
   email: string
 ): Promise<IUser | null> {
-  return await User.findOne({ email }, { id: 1, password: 1, email: 1 });
+  return await User.findOne({ email }, { password: 1, email: 1 });
 };
 
 userSchema.methods.comparePassword = async function (

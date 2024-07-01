@@ -1,8 +1,9 @@
 import { User } from "../modules/user/user.model";
 //pass: Naimur12345
 const superAdminInfo = {
+  name: "Naimur Rahman",
   email: "naimur@gmail.com",
-  password: "$2y$10$LDfD0eogy./v24PKbLXZpOfk4W8nA78GlFvnLTBGxGeneWHamu12W",
+  password: "Naimur12345",
 };
 
 const seedSuperAdmin = async () => {

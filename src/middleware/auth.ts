@@ -4,7 +4,7 @@ import config from "../config";
 import { jwtHelpers } from "../helpers/jwt.helper";
 import AppError from "../utils/customError.util";
 
-const authorization =
+const auth =
   (...roles: string[]): RequestHandler =>
   async (req, res, next): Promise<void> => {
     try {
@@ -36,4 +36,4 @@ const authorization =
     }
   };
 
-export default authorization;
+export default auth;
