@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const user_model_1 = require("../modules/user/user.model");
 //pass: Naimur12345
 const superAdminInfo = {
+    name: "Naimur Rahman",
     email: "naimur@gmail.com",
     password: "Naimur12345",
 };

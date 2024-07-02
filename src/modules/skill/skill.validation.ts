@@ -5,7 +5,7 @@ const createReq = z.object({
     required_error: "name is must required",
     invalid_type_error: "name must be a string",
   }),
-  percentage: z.string({
+  percentage: z.number({
     invalid_type_error: "Percentage must be a string",
   }),
   icon: z.string({
@@ -20,7 +20,7 @@ const updateReq = z.object({
     })
     .optional(),
   percentage: z
-    .string({
+    .number({
       invalid_type_error: "percentage must be a string",
     })
     .optional(),

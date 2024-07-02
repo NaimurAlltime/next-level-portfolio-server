@@ -21,16 +21,11 @@ const createSkill: RequestHandler = catchAsyncErrors(
 
 const getSkill: RequestHandler = catchAsyncErrors(
   async (req: Request, res: Response) => {
-    const getResult = await skillService.getSkill(req.queryFeatures);
+    const result = await skillService.getSkill();
     sendResponse<Partial<ISkill>[]>(res, {
       statusCode: httpStatus.OK,
       success: true,
-      data: getResult.data,
-      meta: {
-        page: req.queryFeatures.page,
-        limit: req.queryFeatures.limit,
-        total: getResult.total || 0,
-      },
+      data: result,
     });
   }
 );

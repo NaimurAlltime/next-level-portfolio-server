@@ -18,6 +18,11 @@ app.use(
   })
 );
 
+// origin: [
+//   'https://smartphone-management-client-side.netlify.app',
+//   'http://localhost:5173',
+// ],
+
 //global app middleware
 app.use(helmet());
 // app.use(cors({ origin: "*" }));

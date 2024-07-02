@@ -13,20 +13,8 @@ const createSkill = async (payload: ISkill): Promise<ISkill> => {
   return result;
 };
 
-const getSkill = async (
-  queryFeatures: IQueryFeatures
-): Promise<IQueryResult<ISkill>> => {
-  const queryFeatureStages: PipelineStage[] = makeQueryFeatureStages(
-    queryFeatures,
-    { searchFields: ["name"] }
-  );
-
-  const pipeline: PipelineStage[] = [...queryFeatureStages];
-
-  const [result]: IQueryResult<ISkill>[] = await Skill.aggregate<
-    IQueryResult<ISkill>
-  >(pipeline);
-
+const getSkill = async () => {
+  const result = await Skill.find();
   return result;
 };
 

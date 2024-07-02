@@ -4,6 +4,10 @@ import { IUser, UserModel } from "./user.interface";
 
 export const userSchema = new Schema<IUser, UserModel>(
   {
+    name: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,

@@ -16,6 +16,10 @@ exports.User = exports.userSchema = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const mongoose_1 = require("mongoose");
 exports.userSchema = new mongoose_1.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
