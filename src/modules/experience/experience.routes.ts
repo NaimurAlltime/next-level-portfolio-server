@@ -1,3 +1,4 @@
+import auth from "../../middleware/auth";
 import validateRequest from "../../middleware/validateRequest";
 import experienceController from "./experience.controller";
 import { experienceValidator } from "./experience.validation";
@@ -7,6 +8,7 @@ const experienceRoutes: Router = express.Router();
 
 experienceRoutes.post(
   "/create",
+  auth(),
   validateRequest(experienceValidator),
   experienceController.create
 );

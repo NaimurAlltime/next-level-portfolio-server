@@ -7,7 +7,7 @@ import { educationValidator } from "./education.validation";
 const educationRoutes: Router = express.Router();
 
 educationRoutes.post(
-  "/",
+  "/create",
   auth(),
   validateRequest(educationValidator),
   educationController.create
