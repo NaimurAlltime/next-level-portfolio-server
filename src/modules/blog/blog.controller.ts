@@ -1,50 +1,62 @@
-import asyncHandler from '../../lib/asyncHandler';
-import STATUS from '../../lib/httpStatus';
-import sendResponse from '../../lib/sendResponse';
-import blogServices from './blog.services';
+import { Request, RequestHandler, Response } from "express";
+import catchAsyncErrors from "../../utils/catchAsyncError.util";
+import httpStatus from "http-status";
+import sendResponse from "../../utils/sendResponse.util";
+import blogService from "./blog.services";
+import { IBlog } from "./blog.interface";
 
-class BlogControllers {
-  private sendResponse = sendResponse;
-  private STATUS = STATUS;
-  private services = blogServices;
-  private messageTitle = 'Blog';
-
-  // Create
-  create = asyncHandler(async (req, res) => {
-    const result = await this.services.create(req.body);
-
-    this.sendResponse(res, {
+const create: RequestHandler = catchAsyncErrors(
+  async (req: Request, res: Response) => {
+    const result = await blogService.create(req.body);
+    sendResponse<IBlog>(res, {
+      statusCode: httpStatus.OK,
       success: true,
-      statusCode: this.STATUS.CREATED,
-      message: `${this.messageTitle} Created Successfully`,
+      message: "Project created successfully",
       data: result,
     });
-  });
+  }
+);
 
-  // read all
-  readAll = asyncHandler(async (req, res) => {
-    const result = await this.services.readAll();
-
-    this.sendResponse(res, {
+const getAll: RequestHandler = catchAsyncErrors(
+  async (req: Request, res: Response) => {
+    const result = await blogService.getAll();
+    sendResponse<Partial<IBlog>[]>(res, {
+      statusCode: httpStatus.OK,
       success: true,
-      statusCode: this.STATUS.OK,
-      message: `${this.messageTitle} Fetched Successfully`,
+      message: "All Project read successfully",
       data: result,
     });
-  });
+  }
+);
 
-  // read all
-  readSingle = asyncHandler(async (req, res) => {
-    const result = await this.services.readSingle(req.params.id);
-
-    this.sendResponse(res, {
+const getOne: RequestHandler = catchAsyncErrors(
+  async (req: Request, res: Response) => {
+    const result = await blogService.getOne(req.params.id);
+    sendResponse<Partial<IBlog> | null>(res, {
+      statusCode: httpStatus.OK,
       success: true,
-      statusCode: this.STATUS.OK,
-      message: `${this.messageTitle} Fetched Successfully`,
+      message: "Single Project read successfully",
       data: result,
     });
-  });
-}
+  }
+);
 
-const blogControllers = new BlogControllers();
-export default blogControllers;
+const update: RequestHandler = catchAsyncErrors(
+  async (req: Request, res: Response) => {
+    const result = await blogService.update(req.params.id, req.body);
+    sendResponse<Partial<IBlog> | null>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Project Updated successfully",
+      data: result,
+    });
+  }
+);
+
+const blogController = {
+  create,
+  getAll,
+  getOne,
+  update,
+};
+export default blogController;

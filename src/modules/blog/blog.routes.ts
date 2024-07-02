@@ -1,10 +1,10 @@
-import { Router } from "express";
+import express, { Router } from "express";
 import blogControllers from "./blog.controller";
 import validateRequest from "../../middleware/validateRequest";
 import auth from "../../middleware/auth";
 import { blogValidator } from "./blog.validation";
 
-const blogRoutes = Router();
+const blogRoutes: Router = express.Router();
 
 blogRoutes.post(
   "/create",
@@ -12,7 +12,7 @@ blogRoutes.post(
   validateRequest(blogValidator),
   blogControllers.create
 );
-blogRoutes.get("/:id", blogControllers.readSingle);
-blogRoutes.get("/", blogControllers.readAll);
+blogRoutes.get("/:id", blogControllers.getOne);
+blogRoutes.get("/", blogControllers.getAll);
 
 export default blogRoutes;

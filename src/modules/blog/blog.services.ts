@@ -1,20 +1,34 @@
-import Blog, { IBlog } from "./blog.model";
+import { IBlog } from "./blog.interface";
+import Blog from "./blog.model";
 
-class BlogServices {
-  private model = Blog;
+const create = async (payload: IBlog): Promise<IBlog> => {
+  const result = await Blog.create(payload);
+  return result;
+};
 
-  async create(payload: IBlog) {
-    return this.model.create(payload);
-  }
+const getAll = async () => {
+  const result = await Blog.find().sort({ createdAt: -1 });
 
-  async readAll() {
-    return this.model.find();
-  }
+  return result;
+};
 
-  async readSingle(id: string) {
-    return this.model.findById(id);
-  }
-}
+const getOne = async (id: string) => {
+  const result = await Blog.findById(id);
 
-const blogServices = new BlogServices();
-export default blogServices;
+  return result;
+};
+
+const update = async (id: string, payload: Partial<IBlog>) => {
+  const result = await Blog.findByIdAndUpdate(id, payload);
+
+  return result;
+};
+
+const blogService = {
+  create,
+  getAll,
+  getOne,
+  update,
+};
+
+export default blogService;
