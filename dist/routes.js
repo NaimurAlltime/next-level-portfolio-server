@@ -8,6 +8,7 @@ const auth_routes_1 = __importDefault(require("./modules/auth/auth.routes"));
 const skill_routes_1 = __importDefault(require("./modules/skill/skill.routes"));
 const experience_routes_1 = __importDefault(require("./modules/experience/experience.routes"));
 const project_routes_1 = __importDefault(require("./modules/project/project.routes"));
+const education_routes_1 = __importDefault(require("./modules/education/education.routes"));
 const router = express_1.default.Router();
 const routes = [
     {
@@ -25,6 +26,10 @@ const routes = [
     {
         path: "/project",
         route: project_routes_1.default,
+    },
+    {
+        path: "/education",
+        route: education_routes_1.default,
     },
 ];
 routes.forEach((route) => router.use(route.path, route.route));

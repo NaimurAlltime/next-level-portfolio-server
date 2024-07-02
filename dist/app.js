@@ -19,6 +19,10 @@ app.use((0, cors_1.default)({
     origin: ["http://localhost:3000"],
     credentials: true,
 }));
+// origin: [
+//   'https://smartphone-management-client-side.netlify.app',
+//   'http://localhost:5173',
+// ],
 //global app middleware
 app.use((0, helmet_1.default)());
 // app.use(cors({ origin: "*" }));

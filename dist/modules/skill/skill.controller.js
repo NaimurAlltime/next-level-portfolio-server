@@ -27,16 +27,11 @@ const createSkill = (0, catchAsyncError_util_1.default)((req, res) => __awaiter(
     });
 }));
 const getSkill = (0, catchAsyncError_util_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const getResult = yield skill_service_1.default.getSkill(req.queryFeatures);
+    const result = yield skill_service_1.default.getSkill();
     (0, sendResponse_util_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        data: getResult.data,
-        meta: {
-            page: req.queryFeatures.page,
-            limit: req.queryFeatures.limit,
-            total: getResult.total || 0,
-        },
+        data: result,
     });
 }));
 const updateSkill = (0, catchAsyncError_util_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {

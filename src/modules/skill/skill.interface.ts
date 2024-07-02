@@ -2,7 +2,7 @@ import { Model, ObjectId } from "mongoose";
 
 export interface ISkill {
   name: string;
-  percentage: number;
+  percentage: string;
   icon: string;
 }
 
