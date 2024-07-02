@@ -3,10 +3,11 @@ import sendResponse from "../../utils/sendResponse.util";
 import catchAsyncErrors from "../../utils/catchAsyncError.util";
 import { IEducation } from "./education.interface";
 import httpStatus from "http-status";
+import educationService from "./education.services";
 
 const create: RequestHandler = catchAsyncErrors(
   async (req: Request, res: Response) => {
-    const result = await experienceService.create(req.body);
+    const result = await educationService.create(req.body);
     sendResponse<IEducation>(res, {
       statusCode: httpStatus.OK,
       success: true,
@@ -18,7 +19,7 @@ const create: RequestHandler = catchAsyncErrors(
 
 const getAll: RequestHandler = catchAsyncErrors(
   async (req: Request, res: Response) => {
-    const result = await experienceService.getAll();
+    const result = await educationService.getAll();
     sendResponse<Partial<IEducation>[]>(res, {
       statusCode: httpStatus.OK,
       success: true,

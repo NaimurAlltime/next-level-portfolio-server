@@ -1,16 +1,20 @@
-import Education, { IEducation } from "./education.model";
+import { IEducation } from "./education.interface";
+import Education from "./education.model";
 
-class EducationServices {
-  private model = Education;
+const create = async (payload: IEducation): Promise<IEducation> => {
+  const result = await Education.create(payload);
+  return result;
+};
 
-  async create(payload: IEducation) {
-    return this.model.create(payload);
-  }
+const getAll = async () => {
+  const result = await Education.find().sort({ endDate: -1 });
 
-  async readAll() {
-    return this.model.find().sort({ endDate: -1 });
-  }
-}
+  return result;
+};
 
-const educationServices = new EducationServices();
-export default educationServices;
+const educationService = {
+  create,
+  getAll,
+};
+
+export default educationService;
