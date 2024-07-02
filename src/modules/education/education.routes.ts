@@ -1,19 +1,17 @@
-import { Router } from 'express';
-import { z } from 'zod';
-import validateRequest from '../../middlewares/validateRequest';
-import educationControllers from './education.controller';
-import verifyAuth from '../../middlewares/verifyAuth';
+import express, { Router } from "express";
+import auth from "../../middleware/auth";
+import validateRequest from "../../middleware/validateRequest";
+import educationController from "./education.controller";
+import { educationValidator } from "./education.validation";
 
-const educationValidator = z.object({
-  institute: z.string(),
-  certificate: z.string(),
-  startDate: z.string(),
-  endDate: z.string(),
-});
+const educationRoutes: Router = express.Router();
 
-const educationRoutes = Router();
-
-educationRoutes.post('/', verifyAuth, validateRequest(educationValidator), educationControllers.create);
-educationRoutes.get('/', educationControllers.readAll);
+educationRoutes.post(
+  "/",
+  auth(),
+  validateRequest(educationValidator),
+  educationController.create
+);
+educationRoutes.get("/", educationController.getAll);
 
 export default educationRoutes;
