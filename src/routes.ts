@@ -28,6 +28,10 @@ const routes: { path: string; route: Router }[] = [
     path: "/education",
     route: educationRoutes,
   },
+  {
+    path: "/blog",
+    route: educationRoutes,
+  },
 ];
 
 routes.forEach((route) => router.use(route.path, route.route));

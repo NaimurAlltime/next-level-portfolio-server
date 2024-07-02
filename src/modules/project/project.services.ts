@@ -7,7 +7,7 @@ const create = async (payload: IProject): Promise<IProject> => {
 };
 
 const getAll = async () => {
-  const result = await Project.find();
+  const result = await Project.find().sort({ createdAt: -1 });
 
   return result;
 };
