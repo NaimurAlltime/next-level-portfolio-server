@@ -4,6 +4,7 @@ import skillRoutes from "./modules/skill/skill.routes";
 import experienceRoutes from "./modules/experience/experience.routes";
 import projectRoutes from "./modules/project/project.routes";
 import educationRoutes from "./modules/education/education.routes";
+import blogRoutes from "./modules/blog/blog.routes";
 
 const router: Router = express.Router();
 
@@ -30,7 +31,7 @@ const routes: { path: string; route: Router }[] = [
   },
   {
     path: "/blog",
-    route: educationRoutes,
+    route: blogRoutes,
   },
 ];
 
